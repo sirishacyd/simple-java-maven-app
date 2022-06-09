@@ -43,21 +43,36 @@
             </manifest>
           </archive>
         </configuration>
-      </plugin>
-       <plugin>
-        <groupId>net.adamcin.oakpal</groupId>
-        <artifactId>oakpal-maven-plugin</artifactId>
-        <version>2.2.2</version>
-        <configuration>
-        </configuration>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>scan</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
+      <project>
+    ...
+    <build>
+        ...
+        <plugins>
+            ...
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>7.1.0</version>
+                <configuration>
+                    <suppressionFiles>
+                        <suppressionFile>http://example.org/suppression.xml</suppressionFile>
+                        <suppressionFile>project-suppression.xml</suppressionFile>
+                    </suppressionFiles>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            ...
+        </plugins>
+        ...
+    </build>
+    ...
+</project>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
